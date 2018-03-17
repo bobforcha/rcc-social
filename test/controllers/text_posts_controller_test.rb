@@ -15,11 +15,11 @@ class TextPostsControllerTest < ActionDispatch::IntegrationTest
     user = users(:user1)
     post sessions_url, params: { email: user.email, password: "password" }
 
-    post text_posts_url, params: { text_post: { title: "Test Title", body: "Test Body" } }
+    post text_posts_path, params: { text_post: { title: "Test Title", body: "Test Body" } }
 
     text_post = assigns(:text_post)
 
     assert text_post.persisted?
-    assert_redirected_to post_url
+    assert_redirected_to post_url(text_post)
   end
 end

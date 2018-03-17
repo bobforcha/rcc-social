@@ -4,12 +4,12 @@ class TextPostsController < ApplicationController
   end
 
   def create
-    @text_post = current_user.posts.build(text_post_params)
+    @text_post = current_user.text_posts.build(text_post_params)
 
     if @text_post.save
       redirect_to post_url(@text_post), notice: "Post created!"
     else
-      render :new, alert: "Error creating post."
+      redirect_to new_text_post_url, alert: "Error creating post."
     end
   end
 

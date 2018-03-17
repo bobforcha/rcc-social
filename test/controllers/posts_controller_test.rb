@@ -8,7 +8,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "get index for authorized users" do
     @user1 = users(:user1)
-    post sessions_url, params: { email: @user1.email, password: 'password', password_confirmation: 'password' }
+    post sessions_url, params: { email: @user1.email, password: 'password' }
 
     get posts_url
     assert_response :success
