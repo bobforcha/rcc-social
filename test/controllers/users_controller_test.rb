@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get new with new user" do
-    get :new
+    get new_user_url
 
     user = assigns(:user)
 
@@ -11,15 +11,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create user" do
-    params = {
+
+
+    post users_url, params: {
       user: {
         email: "user@example.com",
         password: "password",
         password_confirmation: "password"
       }
     }
-
-    post :create, params
 
     assert_redirected_to root_url
   end
