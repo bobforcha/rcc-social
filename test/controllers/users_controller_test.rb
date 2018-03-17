@@ -23,4 +23,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_url
   end
+
+  test "should show user" do
+    user = users(:user1)
+
+    get user_url(user)
+    assert assigns(:user)
+    assert_response :success
+  end
+
+  test "should follow user" do
+    user1 = users(:user1)
+    user2 = users(:user2)
+    post sessions_url, params: { email: user1.email, password: "password" }
+
+    get follow_user_url(user2.id)
+    assert user1.following? user2
+    assert_redirected_to user_url(user2)
+  end
 end
