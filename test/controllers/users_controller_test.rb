@@ -41,4 +41,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert user1.following? user2
     assert_redirected_to user_url(user2)
   end
+
+  test "follow should require login" do
+    user = users(:user1)
+    # post sessions_url, params: { email: user1.email, password: "password" }
+
+    get follow_user_url(user.id)
+    assert_redirected_to login_url
+  end
 end
