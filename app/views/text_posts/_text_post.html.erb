@@ -9,7 +9,7 @@
   <div class="panel-body">
     <p><em>By <%= link_to("#{text_post.user.name}", user_path(text_post.user.id)) %></em></p>
 
-    <%= text_post.body %>
+    <%= sanitize text_post.body %>
 
     <% if text_post.user == current_user %>
       <p>
