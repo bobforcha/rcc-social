@@ -11,7 +11,9 @@
 
     <%= image_tag image_post.url, class: "img-responsive" %>
 
-    <%= image_post.body %>
+    <p><%= sanitize image_post.body %></p>
+
+    <p><%= pluralize image_post.cached_comment_count, "Comment" %></p>
 
     <% if image_post.user == current_user %>
       <p>
